@@ -1,6 +1,6 @@
 import Button from '@mui/material/Button';
 
-export default function CustomButton({ text, style, startIcon }) {
+export default function CustomButton({ text, style, startIcon, onClick }) {
     return (
         <Button variant="contained"
             style={{
@@ -9,6 +9,7 @@ export default function CustomButton({ text, style, startIcon }) {
                 height: style?.height ?? 40,
             }}
             startIcon={startIcon}
+            onClick={onClick}
         >{text}</Button>
     )
 }

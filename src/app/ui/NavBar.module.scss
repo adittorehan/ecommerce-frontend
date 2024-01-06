@@ -13,10 +13,18 @@
     justify-content: space-around;
 }
 
+.searchbarContainer {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin: 0 20px;    
+}
+
 .searchbar {
     border: none;
-    width: 700px;
     height: 38px;
+    flex-grow: 1;
     border-radius: 12px;
     padding: 0 20px;
 
@@ -34,8 +42,9 @@
 }
 
 .searchButton {
-    position: relative;
-    left: -50px;
+    position: absolute;
+    right: 11px;
+    padding: 0;
 
     @media (max-width: 750px) {
         display: none;
@@ -51,5 +60,24 @@
     a {
         color: white;
         text-decoration: none;
+    }
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+
+    p {
+        font-size: 10px;
+    }
+
+    a {
+        font-weight: 600;
+        color: white;
+        text-decoration: none;
+        font-size: 12.5px;
     }
 }

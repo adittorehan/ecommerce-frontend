@@ -13,13 +13,13 @@ const CustomInput = ({
 
     return (
         <div>
-            <label style={labelStyle} for={id}>{label}</label>
+            <label style={labelStyle} htmlFor={id}>{label}</label>
             <input
                 className={styles.input}
                 value={state?.[name]}
-                handleOnChange={(e) => handleOnChange(name, e.target.value)}
-                placeHolder={placeHolder}
-                inputStyle={inputStyle}
+                onChange={(e) => handleOnChange(name, e.target.value)}
+                placeholder={placeHolder}
+                style={inputStyle}
             />
         </div>
     )

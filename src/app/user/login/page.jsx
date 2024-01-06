@@ -1,21 +1,51 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Box, Container, Grid } from '@mui/material';
+import axios from 'axios';
+import Alert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
 
 import styles from './page.module.scss';
-import Link from 'next/link';
 import CustomButton from '../../ui/CutomButton';
 import CustomInput from '../../ui/CustomInput';
+import { BASE_URL } from '@/app/data';
+import { getUserName, setUser } from '@/app/lib/auth';
 
 
 export default function Login() {
-
+    console.log("name", getUserName());
     const [loginForm, setLoginForm] = useState(null);
+    const [alert, setAlert] = useState(null);
     const handleOnChange = (key, value) => {
         setLoginForm({
             ...loginForm,
             [key]: value
+        })
+    }
+    const router = useRouter();
+    const [openAlert, setAlertStatus] = useState(false);
+
+    const handleClose = () => {
+        setAlertStatus(false)
+    }
+
+    const handleSubmit = (form) => {
+        axios.post(`${BASE_URL}/login`, form).then(res => {
+            setAlert(< Alert severity="success" color="success" onClose={handleClose}>
+                Successfully Logged In
+            </Alert >)
+            setAlertStatus(true)
+            setUser(res.data);
+            router.push('/');
+        }).catch(err => {
+            setAlert(<Alert severity="warning" color="warning" onClose={handleClose}>
+                Failed to login
+            </Alert>)
+            console.log(err);
+            setAlertStatus(true)
         })
     }
 
@@ -59,6 +89,7 @@ export default function Login() {
                                         backgroundColor: "#f57224",
                                         height: 48
                                     }}
+                                    onClick={e => handleSubmit(loginForm)}
                                 />
                                 <p>Or, login with</p>
                                 <CustomButton
@@ -75,6 +106,9 @@ export default function Login() {
                             </Grid>
                         </Grid>
                     </Box>
+                    {alert && <Snackbar anchorOrigin={{ vertical: 'top', horizontal: 'center' }} open={openAlert} autoHideDuration={3000} onClose={handleClose}>
+                        {alert}
+                    </Snackbar>}
                 </Container>
             </Box>
         </>
