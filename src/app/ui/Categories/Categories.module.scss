@@ -1,0 +1,32 @@
+.container {
+    box-sizing: border-box;
+    width: 238px;
+    height: 344px;
+
+    * {
+        font-size: 12px;
+    }
+
+    border-radius: 12px;
+    padding: 10px 0 12px;
+    overflow: hidden;
+}
+
+.item {
+    box-sizing: content-box;
+    line-height: 27px;
+    color: #757575;
+    display: flex;
+    align-items: center;
+    padding: 0 0 0 8px;
+
+    svg {
+        margin-right: 10px;
+    }
+
+    &:hover {
+        background-color: #F5F5F5;
+        /* Change the background color on hover with 50% opacity */
+    }
+
+}

@@ -1,0 +1,34 @@
+.container {
+    position: relative;
+    width: 100%;
+    height: 344px;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+
+.slide {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 100%;
+}
+
+.image {
+    flex: 0 0 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.button {
+    color: white;
+    background-color: rgba(0, 0, 0, .3);
+    width: 24px;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: calc(50% - 32px);
+    overflow: hidden;
+    transition: "transform 0.5s ease-in-out";
+}

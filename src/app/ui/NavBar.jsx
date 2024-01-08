@@ -83,7 +83,6 @@ const NavBar = () => {
     }
 
     const open = Boolean(anchorEl);
-    const id = open ? 'simple-popover' : undefined;
     return (
         <div className={styles.container}>
             <div className={styles.navItemContainer}>
