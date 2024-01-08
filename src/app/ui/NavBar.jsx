@@ -12,22 +12,48 @@ import Popover from '@mui/material/Popover';
 import MenuItem from '@mui/material/MenuItem';
 
 import styles from './NavBar.module.scss';
-import { getUserName } from '../lib/auth';
+import { deleteUser, getUserName } from '../lib/auth';
 
-const User = ({ name }) => {
+const User = ({ name, handleUser }) => {
+    const [anchorEl, setAnchorEl] = useState(null);
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const handleLogout = () => {
+        deleteUser();
+        handleUser(null);
+        handleClose();
+    }
+
     return (
-        <div className={styles.profile}>
-            <p>Hello, {name}</p>
-            <a href='#'>Orders & Account</a>
-        </div>
-    )
-}
+        <>
+            <div className={styles.profile} onClick={handleClick}>
+                <p>Hello, {name}</p>
+                <a href='#'>Orders & Account</a>
+            </div>
+            <Menu
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+            >
+                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleLogout}>Log Out</MenuItem>
+            </Menu>
+        </>
+    );
+};
 
-const Login = ({ user }) => {
+const Login = ({ user, handleUser }) => {
     return (
         <>
             {
-                Boolean(user) ? <User name={user} /> :
+                Boolean(user) ? <User name={user} handleUser={handleUser} /> :
                     <div className={styles.loginContainer}>
                         <PersonOutlineOutlinedIcon style={{ color: 'white' }} />
                         <Link href='/user/login'>Login</Link>
@@ -51,14 +77,10 @@ const Cart = () => {
 
 const NavBar = () => {
     const [anchorEl, setAnchorEl] = useState(null);
-
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
+    const [user, setUser] = useState(getUserName());
+    const handleUser = (value) => {
+        setUser(value)
+    }
 
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
@@ -88,38 +110,11 @@ const NavBar = () => {
                 <div style={{
                     display: "flex"
                 }}>
-                    <Login user={getUserName()} />
+                    <Login user={user} handleUser={handleUser} />
                     <div className={styles.loginContainer}>
                         <Link href='/user/register'>Sign Up</Link>
                     </div>
                     <Cart />
-                    <div>
-                        <Tooltip title="Open Menu" arrow>
-                            <IconButton onClick={handleClick}>
-                                {/* Your icon, e.g., <MenuIcon /> */}
-                                <span>Icon</span>
-                            </IconButton>
-                        </Tooltip>
-
-                        <Popover
-                            id={id}
-                            open={open}
-                            anchorEl={anchorEl}
-                            onClose={handleClose}
-                            anchorOrigin={{
-                                vertical: 'bottom',
-                                horizontal: 'center',
-                            }}
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'center',
-                            }}
-                        >
-                            <MenuItem onClick={handleClose}>Menu Item 1</MenuItem>
-                            <MenuItem onClick={handleClose}>Menu Item 2</MenuItem>
-                            <MenuItem onClick={handleClose}>Menu Item 3</MenuItem>
-                        </Popover>
-                    </div>
                 </div>
             </div>
         </div >

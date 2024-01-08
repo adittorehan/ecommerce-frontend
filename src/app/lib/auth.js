@@ -6,9 +6,15 @@ export const setUser = (user) => {
     }
 }
 
-
-export const removeUser = () => {
+export const deleteUser = () => {
     secureLocalStorage.clear();
 }
 
-export const getUserName = () => secureLocalStorage.getItem("name");
+export const checkTokenExpiration = () => {
+    console.log(secureLocalStorage.getItem("expires_at"));
+}
+
+export const getUserName = () => {
+    checkTokenExpiration();
+    return secureLocalStorage.getItem("name")
+};
