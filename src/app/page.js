@@ -2,18 +2,19 @@
 
 import { Container, Grid, Typography } from "@mui/material";
 
-import NavBar from "./ui/NavBar";
 import Categories from "./ui/Categories/Categories";
 import styles from "./page.module.scss";
 import Slider from "./ui/Slider/Slider";
 import ProductCard from "./ui/Product/ProductCard";
 import { products } from "./lib/data";
+import { useRouter } from "next/navigation";
 
 
 export default function Home() {
+  const router = useRouter();
+
   return (
     <div className={styles.container}>
-      <NavBar />
       <Container className={styles.main}>
         <Categories />
         <div className={styles.divider}></div>
@@ -29,7 +30,7 @@ export default function Home() {
           {
             products.map(
               item => (
-                <ProductCard key={item.id} product={item} />
+                <ProductCard key={item.id} product={item} onClick={() => router.push(`products/${item.id}`)} />
               )
             )
           }

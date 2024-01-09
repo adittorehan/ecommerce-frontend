@@ -86,13 +86,15 @@ const NavBar = () => {
     return (
         <div className={styles.container}>
             <div className={styles.navItemContainer}>
-                <Image
-                    src={"/logo.png"}
-                    width={120}
-                    height={48}
-                    style={{ verticalAlign: 'middle' }}
-                    alt='App logo'
-                />
+                <Link href='/'>
+                    <Image
+                        src={"/logo.png"}
+                        width={120}
+                        height={48}
+                        style={{ verticalAlign: 'middle' }}
+                        alt='App logo'
+                    />
+                </Link>
                 <div className={styles.searchbarContainer}>
                     <input
                         className={styles.searchbar}

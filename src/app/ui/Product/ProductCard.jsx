@@ -4,14 +4,14 @@ import Rating from '@mui/material/Rating';
 import styles from './ProductCard.module.scss';
 
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, onClick }) {
 
     const calculateDiscount = () => {
         return -45;
     }
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} onClick={onClick}>
             <Image
                 src={product.image}
                 width={189}
