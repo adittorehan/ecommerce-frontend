@@ -16,7 +16,7 @@ const items = [
     "Groceries",
     "Home & Lifestyle",
     "Sports & Outdoors",
-    "Automotive & Motorbike",    
+    "Automotive & Motorbike",
 ]
 
 const Item = ({ name }) => {
@@ -32,7 +32,7 @@ export default function Categories() {
     return (
         <Box className={styles.container} sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
             {
-                items.map(i => <Item name={i} />)
+                items.map(i => <Item name={i} key={i} />)
             }
         </Box>
     )
