@@ -1,7 +1,11 @@
 .container {
     width: 100%;
     height: 100%;
-    background-color: #F5F5F5;
+    background-color: #EFF0F5;
+
+    >div:first-child {
+        padding: 0;
+    }
 }
 
 .main {
@@ -45,17 +49,65 @@
 .description {
     width: 520px;
     padding: 0 20px;
+
+    h2 {
+        margin-top: 13px;
+        margin-bottom: 11px;
+        color: #212121;
+        font-size: 22px;
+        font-weight: 400;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+}
+
+.optionContainer {
+    display: flex;
+}
+
+.optionTitle {
+    width: 92px;
+    color: #757575;
+    word-wrap: break-word;
+    font-size: 14px;
+    font-weight: 400;
+    vertical-align: top;
 }
 
 .ratingContainer {
     display: flex;
     align-items: center;
     font-size: 12px;
+    margin-bottom: 10px;
 }
 
 .ratingStar {
     font-size: 14px;
     font-family: Roboto-Regular, 'Helvetica Neue', Helvetica, Tahoma, Arial, Sans-serif;
+}
+
+.brandContainer {
+    font-size: 12px;
+}
+
+.priceContainer {
+    padding: 16px 0px;
+
+    .price {
+        font-size: 30px;
+        color: #f85606;
+    }
+
+    .oldPrice {
+        font-size: 12px;
+        color: #9e9e9e;
+        text-decoration: line-through;
+    }
+
+    .discount {
+        font-size: 14px;
+        margin-left: 6px;
+    }
 }
 
 .actionContainer {
@@ -114,19 +166,125 @@
     }
 }
 
+
 .deliveryContainer {
     width: 330px;
     background-color: #FAFAFA;
     padding: 20px 16px 2px;
+    display: inline-block;
+}
 
-    .deliveryHeader {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-size: 12px;
-        color: gray;
-        svg {
+
+.reviewsAndRecommendationsContainer {
+    margin-top: 12px;
+    width: 100%;
+    background-color: #EFF0F5;
+
+    > * {
+        background-color: white;
+    }
+
+    .divider {
+        width: 12px;
+        background-color: #EFF0F5;
+    }
+
+    .reviewSection {
+        width: calc(100% - 200px);
+        vertical-align: top;
+        display: inline-block;
+        margin-right: 10px;
+
+        .header {
+            width: 100%;
             font-size: 14px;
+            font-weight: 500;
+            background-color: #f5f5f5;
+            padding: 12px 20px;
+        }
+
+        .ratingsSummary {
+            display: flex;
+            padding: 16px 20px;
+            border-bottom: 0.5px solid rgba(0, 0, 0, .1);
+            ;
+
+            .left {
+                width: 210px;
+                border-right: 1px solid rgba(0, 0, 0, .1);
+
+                .reviewRate {
+                    display: flex;
+
+                    .score {
+                        font-size: 32px;
+                        font-weight: 500;
+                        margin-right: 8px;
+
+                    }
+
+                    .ratingTag {
+                        display: flex;
+                        align-items: center;
+                        color: #fff;
+                        position: relative;
+                        background-color: #ffc700;
+                        padding: 0 12px 0 4px;
+                        height: 20px;
+                        font-size: 14px;
+                        border-radius: 2px 0 0 2px;
+                        align-self: center;
+                        background-size: 100% 100%;
+                        background-repeat: no-repeat;
+
+                        img {
+                            margin-right: 4px;
+                            width: 12px;
+                        }
+
+                        &::after {
+                            content: " ";
+                            position: absolute;
+                            right: -10px;
+                            width: 0;
+                            height: 0;
+                            border-top: 20px solid #ffc700;
+                            border-right: 10px solid transparent;
+                            border-left: 10px solid transparent;
+                        }
+                    }
+                }
+
+                .ratingStars {
+                    margin-top: 8px;
+                    margin-bottom: 12px;
+                }
+
+                .totalRatings {
+                    font-size: 14px;
+                }
+            }
         }
     }
+
+    .recommendationSection {
+        display: inline-block;
+        max-width: 190px;
+        margin-left: 10;
+
+        .header {
+            margin: 0;
+            height: 52px;
+            line-height: 52px;
+            text-align: center;
+            background-color: #fafafa;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            color: #000;
+            font-size: 12px;
+            font-weight: 600;
+        }
+    }
+
 }
